@@ -8,27 +8,28 @@
 // // }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model User {
-  id               Int  @id @default(autoincrement())
+  id               Int             @id @default(autoincrement())
   firstName        String
   lastName         String
   password         String
-  email            String @unique
+  email            String          @unique
   dateOfBirth      DateTime
   jobTitle         String?
-  profile          Profile[]  @relation("profile")
+  profile          Profile[]       @relation("profile")
   posts            Post[]
-  role             Role  @default(USER)
+  role             Role            @default(USER)
   sentRequests     RequestFriend[] @relation("SentRequests")
   receivedRequests RequestFriend[] @relation("ReceivedRequests")
   following        Following[]
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+
   @@map("users")
 }
 
@@ -37,10 +38,11 @@ model RequestFriend {
   status      String // "pending", "accepted", "rejected"
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  requester   User     @relation(name: "SentRequests",fields: [requesterId], references: [id])
+  requester   User     @relation(name: "SentRequests", fields: [requesterId], references: [id])
   requesterId Int
-  requested   User     @relation(name: "ReceivedRequests",fields: [requestedId], references: [id])
+  requested   User     @relation(name: "ReceivedRequests", fields: [requestedId], references: [id])
   requestedId Int
+
   @@map("request_friends")
 }
 
@@ -57,7 +59,8 @@ model Profile {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   userId       Int      @unique
-  user         User     @relation(name:"profile",fields: [userId], references: [id])
+  user         User     @relation(name: "profile", fields: [userId], references: [id])
+
   @@map("profile")
 }
 
@@ -68,6 +71,7 @@ model Following {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   user        User     @relation(fields: [userId], references: [id])
+
   @@map("followings")
 }
 
@@ -81,6 +85,7 @@ model Post {
   updatedAt  DateTime   @updatedAt
   author     User       @relation(fields: [authorId], references: [id])
   categories Category[]
+
   @@map("posts")
 }
 
@@ -90,30 +95,31 @@ model Category {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   posts     Post[]
+
   @@unique([name])
   @@map("categories")
 }
 
-model Course{
-  id          Int      @id  @default(autoincrement())
+model Course {
+  id          Int     @id @default(autoincrement())
   title       String
   description String
   // tag Tags[]
   courseLevel String
-  assistant String?
-  imagePath String?
+  assistant   String?
+  imagePath   String?
   duration    Int
-  certify Boolean  @default(false)
-  published Boolean  @default(false)
-  favorited Boolean @default(false)
+  certify     Boolean @default(false)
+  published   Boolean @default(false)
+  favorited   Boolean @default(false)
 
   //Instructor
   //instructor  Instructor @relation(fields: [instructorId], references: [id])
-  instructorId  Int
+  instructorId Int
 
   //Feedback
   //feedback  CourseFeedback @relation(fields: [feedbackId], references: [id])
-  feedbackId  Int @default(0)
+  feedbackId Int @default(0)
 
   //Schedule
   //schedule  CourseSchedule @relation(fields: [schedulteId], references: [id])
@@ -121,7 +127,7 @@ model Course{
 
   //CourseExpectation
   //courseExpect CourseExpectation @relation(fields: [courseExpectId], references: [id])
-  courseExpectId Int  @default(0)
+  courseExpectId Int @default(0)
 
   //CourseRequirement
   //courseRequirement CourseRequirement @relation(fields: [courseReqId], references: [id])
@@ -129,35 +135,35 @@ model Course{
 
   //CourseSection
   //coursecSection CoursecSection @relation(fields: [coursecSectionId], references: [id])
-  coursecSectionId Int  @default(0)
-  
+  coursecSectionId Int @default(0)
+
   //courseEnrolled  CourseEnroll[]
-  createdAt        DateTime        @default(now())
-  createdBy Int @default(0)
-  updatedAt        DateTime        @updatedAt
-  updatedBy Int @default(0)
+  createdAt DateTime @default(now())
+  createdBy Int      @default(0)
+  updatedAt DateTime @updatedAt
+  updatedBy Int      @default(0)
 }
 
 model CourseDetail {
-  id          Int      @id  @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   title       String
   description String
-  tag Tags[]
+  tag         Tags[]
   courseLevel String
-  assistant String?
-  imagePath String?
+  assistant   String?
+  imagePath   String?
   duration    Int
-  certify Boolean  @default(false)
-  published Boolean  @default(false)
-  favorited Boolean @default(false)
+  certify     Boolean @default(false)
+  published   Boolean @default(false)
+  favorited   Boolean @default(false)
 
   //Instructor
   //instructor  InstructorDetail @relation(fields: [instructorId], references: [id])
-  instructorId  Int
+  instructorId Int
 
   //Feedback
   //feedback  CourseFeedback @relation(fields: [feedbackId], references: [id])
-  feedbackId  Int
+  feedbackId Int
 
   //Schedule
   //schedule  CourseSchedule @relation(fields: [schedulteId], references: [id])
@@ -174,10 +180,10 @@ model CourseDetail {
   //CourseSection
   //coursecSection CoursecSection @relation(fields: [coursecSectionId], references: [id])
   coursecSectionId Int
-  
+
   //courseEnrolled  CourseEnroll[]
-  createdAt        DateTime        @default(now())
-  updatedAt        DateTime        @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum Tags {
@@ -209,74 +215,74 @@ enum Tags {
 //     updatedAt DateTime  @updatedAt
 // }
 
-
-model Instructor{
-    id Int @id @default(autoincrement())
-    firstName String
-    lastName String
-    title  String
-    birthDate  DateTime
-    contactPhone String
-    contactEmail String
-    contactAddress String
-    nationalID String
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
+model Instructor {
+  id             Int      @id @default(autoincrement())
+  firstName      String
+  lastName       String
+  title          String
+  birthDate      DateTime
+  contactPhone   String
+  contactEmail   String
+  contactAddress String
+  nationalID     String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
 
-model CourseFeedback{
-    id Int @id @default(autoincrement())
-    courseId Int
-    feedbackDetail String
-    createdBy Int
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
-    @@map("course_feedbacks")
+model CourseFeedback {
+  id             Int      @id @default(autoincrement())
+  courseId       Int
+  feedbackDetail String
+  createdBy      Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@map("course_feedbacks")
 }
 
-model CourseSchedule{
-    id Int @id @default(autoincrement())
-    courseId Int
-    scheduleBy Int
-    courseStartDate DateTime // @updatedAt 
-    courseEndDate DateTime // @updatedAt
-    remark String
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
+model CourseSchedule {
+  id              Int      @id @default(autoincrement())
+  courseId        Int
+  scheduleBy      Int
+  courseStartDate DateTime // @updatedAt 
+  courseEndDate   DateTime // @updatedAt
+  remark          String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
-model CourseExpectation{
-    id Int @id @default(autoincrement())
-    courseId Int
-    expectationDetail String
-    createdBy Int
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
+model CourseExpectation {
+  id                Int      @id @default(autoincrement())
+  courseId          Int
+  expectationDetail String
+  createdBy         Int
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 }
 
-model CourseRequirement{
-    id Int @id @default(autoincrement())
-    courseId Int
-    requirementDetail String
-    createdBy Int
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
+model CourseRequirement {
+  id                Int      @id @default(autoincrement())
+  courseId          Int
+  requirementDetail String
+  createdBy         Int
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 }
 
-model CoursecSection{
-    id Int @id @default(autoincrement())
-    courseId Int
-    sectionDetail String
-    createdBy Int
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
+model CoursecSection {
+  id            Int      @id @default(autoincrement())
+  courseId      Int
+  sectionDetail String
+  createdBy     Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
-model CourseEnroll{
-    id Int @id @default(autoincrement())
-    enrolledCourseId Int
-    scheduleId Int
-    enrooledUserId Int
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
+model CourseEnroll {
+  id               Int      @id @default(autoincrement())
+  enrolledCourseId Int
+  scheduleId       Int
+  enrooledUserId   Int
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }
