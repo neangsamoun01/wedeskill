@@ -6,8 +6,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "postinstall": "npx prisma generate",
-    "build": "nest build --output public",
+    "postinstall": "prisma generate",
+    "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -29,6 +29,7 @@
     "@nestjs/swagger": "^7.1.16",
     "@nestjs/typeorm": "^10.0.2",
     "@prisma/client": "^5.11.0",
+    "@vercel/postgres": "^0.7.2",
     "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",

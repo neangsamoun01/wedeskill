@@ -4,12 +4,6 @@ import { Course } from "src/course/entities/course.entity";
 import { OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 export class Instructor {
-    // @ApiProperty({ example: 'xxxxxxxx' })
-    // @PrimaryGeneratedColumn()
-
-    // @IsNotEmpty()
-    // @IsNotEmpty({ message: 'Id is required...' })
-    // readonly id: string;
 
     @IsString({message: 'First Name should be a string...'})
     @IsNotEmpty({ message: 'First Name is required...' })
@@ -22,10 +16,6 @@ export class Instructor {
     @IsString({message: 'First Name should be a string...'})
     @IsNotEmpty({ message: 'Title is required...' })
     readonly title: string;
-
-    // @IsString({message: 'First Name should be a string...'})
-    // @IsNotEmpty({ message: 'Title is required...' })
-    // readonly about: string;
 
     @IsString({message: 'First Name should be a string...'})
     @IsNotEmpty({ message: 'Phone is required...' })
@@ -69,6 +59,4 @@ export class Instructor {
     // createdAt: Date; 
     // updatedAt: Date;
 
-    @OneToMany(() => Course, course => course.instructorId)
-    courses: Course[];
 }

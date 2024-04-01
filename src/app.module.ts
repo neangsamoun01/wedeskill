@@ -20,7 +20,6 @@ import { InstructorModule } from './instructor/instructor.module';
       signOptions: { expiresIn: '6000s' },
     }),
    InstructorModule,
-    // SubscribeModule,
     PrismaModule,
   ],
   controllers: [AppController],

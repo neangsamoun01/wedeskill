@@ -1,9 +1,7 @@
 import { Controller, Post, Get,Body, HttpCode, HttpStatus,HttpException, Param, NotFoundException, Put } from '@nestjs/common';
 import { CourseService } from './course.service';
-import { Course, Prisma } from '@prisma/client';
+import { Course } from './entities/course.entity';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { get } from 'http';
-import { GetCourse } from 'src/auth/decorators/course.decorator';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { CreateScheduleDto } from 'src/schedule/dto/create-schedule.dto';
 import { CreateCourseExpectDto } from 'src/course-expect/dto/create-course-expect.dto';
