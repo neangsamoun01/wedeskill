@@ -3,13 +3,14 @@ import { CreateInstructorDto } from './dto/create-instructor.dto';
 import { UpdateInstructorDto } from './dto/update-instructor.dto';
 import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { Prisma, Instructor } from '@prisma/client';
+import {Instructor } from './entities/instructor.entity';
+
 
 @Injectable()
 export class InstructorService {
   constructor(private prisma: PrismaService) {}
 
-  async create(data: Prisma.InstructorCreateInput): Promise<Instructor>{
+  async create(data: CreateInstructorDto): Promise<Instructor>{
     return this.prisma.instructor.create({data});
   }
 

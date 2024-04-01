@@ -1,19 +1,20 @@
 import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { Prisma, Course } from '@prisma/client';
+// import { Prisma, Course } from '@prisma/client';
 import { CreateScheduleDto } from 'src/schedule/dto/create-schedule.dto';
 import { CreateCourseExpectDto } from 'src/course-expect/dto/create-course-expect.dto';
 import { CreateCourseFeedbackDto } from 'src/course-feedback/dto/create-course-feedback.dto';
 import { CreateCourseRequirementDto } from 'src/course-requirement/dto/create-course-requirement.dto';
 import { CreateCourseSectionDto } from 'src/course-section/dto/create-course-section.dto';
-
+import { CreateCourseDto } from './dto/create-course.dto';
+import {Course} from './entities/course.entity'
 @Injectable()
 export class CourseService {
   constructor(
     private prisma: PrismaService,
     ) {}
 
-  async create(data: Prisma.CourseCreateInput): Promise<Course> {
+  async create(data: CreateCourseDto): Promise<Course> {
     return this.prisma.course.create({ data });
   }
 
@@ -96,6 +97,4 @@ export class CourseService {
       createdBy:data.createdBy
     }})
   }
-
- 
 }
