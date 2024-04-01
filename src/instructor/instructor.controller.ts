@@ -3,10 +3,6 @@ import { InstructorService } from './instructor.service';
 import { CreateInstructorDto } from './dto/create-instructor.dto';
 import { UpdateInstructorDto } from './dto/update-instructor.dto';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { Instructor } from './entities/instructor.entity';
-import { Prisma } from '@prisma/client';
-import { In } from 'typeorm';
-
 
 @ApiTags('instructor')
 @Controller('api/v1/instructor')
@@ -19,7 +15,6 @@ export class InstructorController {
   @ApiBearerAuth('defaultBearerAuth')
   @ApiOperation({ summary: 'Update user logged in profile' })
   async create(@Body() data: CreateInstructorDto):Promise<{ message: string }> {
-    // const result =await this.instructorService.create(data);
     try {
       const result =await this.instructorService.create(data);
       if(result != null)

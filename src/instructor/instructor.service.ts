@@ -1,10 +1,8 @@
 
 import { CreateInstructorDto } from './dto/create-instructor.dto';
-import { UpdateInstructorDto } from './dto/update-instructor.dto';
 import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import {Instructor } from './entities/instructor.entity';
-
 
 @Injectable()
 export class InstructorService {

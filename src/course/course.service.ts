@@ -1,6 +1,5 @@
 import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-// import { Prisma, Course } from '@prisma/client';
 import { CreateScheduleDto } from 'src/schedule/dto/create-schedule.dto';
 import { CreateCourseExpectDto } from 'src/course-expect/dto/create-course-expect.dto';
 import { CreateCourseFeedbackDto } from 'src/course-feedback/dto/create-course-feedback.dto';

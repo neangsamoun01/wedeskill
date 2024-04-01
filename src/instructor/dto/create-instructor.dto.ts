@@ -39,12 +39,4 @@ export class CreateInstructorDto {
     @IsNotEmpty({ message: 'National ID is required...' })
     readonly nationalID: string;
 
-    // @IsString()
-    // @IsNotEmpty()
-    // @IsNotEmpty({ message: 'National ID is required...' })
-    // readonly course: string[];
-
-    // @IsNotEmpty({ message: 'about is required...' })
-    // readonly about: string;
-    
 }
