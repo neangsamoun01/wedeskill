@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "esModuleInterop",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
@@ -16,6 +16,11 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
-  }
+    "noFallthroughCasesInSwitch": false,
+    "strict": true, 
+    "esModuleInterop": true, // Emit additional JavaScript to ease interoperability between CommonJS and ES6 modules
+   }
+   ,
+  "include": ["src/**/*"], // Specifies files to include in compilation
+  "exclude": ["node_modules", "dist"] // Specifies files to exclude from compilation
 }

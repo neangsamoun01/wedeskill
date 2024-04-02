@@ -20,7 +20,7 @@ export class AppController {
   @Public()
   @HttpCode(HttpStatus.CREATED)
   @Get()
-  async welcome(signInDto: User) {
-    return this.authService.signIn(signInDto.email, signInDto.password);
+  async welcome(signInDto: User):Promise<string> {
+    return 'Hello world'//return this.authService.signIn(signInDto.email, signInDto.password);
   }
 }
