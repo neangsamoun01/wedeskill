@@ -10,7 +10,7 @@ async function bootstrap() {
     .setTitle('WEDESKILL API')
     .setDescription('WEDESKILL API')
     .setVersion('1.0')
-    .addBearerAuth(
+     .addBearerAuth(
       {
         description: 'Default JWT Authorization',
         type: 'http',
@@ -32,7 +32,7 @@ async function bootstrap() {
  app.useGlobalPipes(new ValidationPipe());
  const document = SwaggerModule.createDocument(app, config, options);
 
- SwaggerModule.setup('api/swagger', app, document);
+SwaggerModule.setup('api/swagger', app, document);
   await app.listen(3030);
 }
 bootstrap();

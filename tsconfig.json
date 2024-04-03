@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "esModuleInterop",
+    "module": "commonjs",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
@@ -12,15 +12,13 @@
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
-    "strictNullChecks": false,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false,
-    "strict": true, 
-    "esModuleInterop": true, // Emit additional JavaScript to ease interoperability between CommonJS and ES6 modules
-   }
-   ,
-  "include": ["src/**/*"], // Specifies files to include in compilation
-  "exclude": ["node_modules", "dist"] // Specifies files to exclude from compilation
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.js"],
+ // "exclude": ["node_modules"]
 }

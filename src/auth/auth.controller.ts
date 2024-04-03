@@ -12,11 +12,9 @@ import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { User } from './entities/auth.entity';
 import { AuthService } from './auth.service';
 import { Public } from './decorators/public.decorator';
-import { Prisma } from '@prisma/client';
 import { CreateUserDto } from './dto/userDto';
 import { ProfileCreateDto } from './dto/profileDto';
 import { GetUser } from './decorators/user.decorator';
-// import { GetUser } from './decorators/user.decorator';
 
 @ApiTags('auth')
 @Controller('api/v1/auth')
